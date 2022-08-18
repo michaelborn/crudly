@@ -1,0 +1,55 @@
+{
+    "name":"ColdBox Modern APP Template",
+    "shortDescription":"",
+    "version":"1.4.0",
+    "author":"You",
+    "location":"forgeboxStorage",
+    "slug":"cbtemplate-modern",
+    "createPackageDirectory":false,
+    "type":"mvc",
+    "keywords":[],
+    "repository":{
+        "type":"",
+        "url":""
+    },
+    "contributors":[],
+    "ignore":[],
+    "dependencies":{
+        "coldbox":"be",
+        "cbdebugger":"^3.2.0+5"
+    },
+    "devDependencies":{
+        "testbox":"*",
+        "commandbox-dotenv":"*",
+        "commandbox-cfconfig":"*",
+        "commandbox-cfformat":"*"
+    },
+    "installPaths":{
+        "coldbox":"lib/coldbox/",
+        "cbdebugger":"modules/cbdebugger/",
+        "testbox":"lib/testbox/"
+    },
+    "scripts":{
+        "postPublish":"!git push --follow-tags",
+        "postInstall":"pathExists .env || cp .env.example .env",
+        "format":"cfformat run app/**/*.cfc,tests/specs/,*.cfc --overwrite",
+        "format:check":"cfformat check app/**/*.cfc,tests/specs/,*.cfc ./.cfformat.json",
+        "format:watch":"cfformat watch path='app/**/*.cfc,tests/specs/,*.cfc' settingsPath='.cfformat.json'"
+    },
+    "testbox":{
+        "runner":"/tests/runner.cfm"
+    },
+    "cfmigrations":{
+        "migrationsDirectory":"resources/database/migrations",
+        "schema":"${DB_SCHEMA}",
+        "connectionInfo":{
+            "bundleName":"${DB_BUNDLENAME}",
+            "bundleVersion":"${DB_BUNDLEVERSION}",
+            "password":"${DB_PASSWORD}",
+            "connectionString":"${DB_CONNECTIONSTRING}",
+            "class":"${DB_CLASS}",
+            "username":"${DB_USER}"
+        },
+        "defaultGrammar":"AutoDiscover@qb"
+    }
+}
